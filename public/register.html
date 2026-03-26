@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - v3 Diseño Básico</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #28a745;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 0.95em;
+        }
+
+        input:focus {
+            border-color: #28a745;
+            outline: none;
+            box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .link {
+            display: block;
+            margin-top: 15px;
+            color: #28a745;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        #errorMsg {
+            color: red;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DSA App (v3)</h1>
+        <h2>Regístrate</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" name="username" placeholder="Tu nombre">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="correo@ejemplo.com">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" placeholder="Mínimo 6 caracteres">
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Repetir Contraseña:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repite la contraseña">
+            </div>
+            
+            <button type="submit">Registrarme</button>
+        </form>
+        <p id="errorMsg"></p>
+        <a href="login.html" class="link">¿Ya tienes cuenta? Entrar</a>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+            const confPass = document.getElementById('confirmPassword').value;
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (user === '' || pass === '' || email === '') {
+                errorMsg.textContent = "Error: Por favor rellena todos los campos.";
+            } else if (pass.length < 6) {
+                errorMsg.textContent = "Error: La contraseña debe tener al menos 6 caracteres.";
+            } else if (pass !== confPass) {
+                errorMsg.textContent = "Error: Las contraseñas no coinciden.";
+            } else {
+                errorMsg.textContent = "";
+                alert("Redirigiendo a login... (Registro v3)");
+                window.location.href = "login.html";
+            }
+        });
+    </script>
+</body>
+</html>
